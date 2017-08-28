@@ -1,3 +1,8 @@
+<?php 
+  require 'db.php';
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	
     <title>Quickwash - Express Laundry</title>
 
     <!-- Bootstrap core CSS -->
@@ -18,8 +23,16 @@
 
   </head>
 
+  <?php 
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+	{
+		if (isset($_POST['login'])) { //user logging in
+			require 'login.php';
+		}
+	}
+	?>
+  
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -35,13 +48,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">Services</a>
+              <a class="nav-link" href="services.php">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
           </ul>
         </div>
@@ -57,39 +70,44 @@
       <div class="container my-4">
 		<div class="row">
 		
+		  <!--Welcome card -->	
 		  <div class="col-lg-6 col-xs-12">
 			<header class="jumbotron col-md-12">
 			<h1 class="display-3">A Warm Welcome!</h1> 
 			<p class="lead">Get your clothes washed and ironed within 4 hours.</p>
-			<a href="#" class="btn btn-primary btn-lg">Book service</a>
+			<a href="book.php" class="btn btn-primary btn-lg">Book service</a>
 			</header>
 		  </div>
 		  
+		  <!--Login and SignUp card -->
 		  <div class="col-lg-6 col-xs-12">
-			<header class="jumbotron col-md-12">
+		  <header class="jumbotron col-md-12">
+			
 			<h3>Login</h3> 
-			<div class="form-group">
-			  <label for="usr">Username:</label>
-			  <input type="text" class="form-control" id="usr">
-			</div>
-			<div class="form-group">
-			  <label for="pwd">Password:</label>
-			  <input type="password" class="form-control" id="pwd">
-			</div>
-			<div class="row">
-				<a href="#" class="btn btn-primary btn-md ml-3">Login</a>
-				
-				<a href="#" class="btn btn-primary btn-md ml-3">Sign Up</a>
-			</div>
-	
+			<form action="index.php" method="post">
+			  <div class="form-group">
+				<label for="exampleInputEmail1">Email address</label>
+				<input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputPassword1">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+			  <div class="row">
+				<button class="btn btn-primary ml-3" name="login">Submit</button>
+				<a href="signup.php" class="btn btn-primary btn-md ml-3">Sign Up</a>
+			  </div>
+			  <p class="text-right">
+					<a href="forgot.php">Forgot Password?</a>
+			  </p>
+			</form>
 			</header>
 		  </div>
 		
 		</div>
-	  </div>	
-
-
-      <!-- Page Features -->
+		</div>	
+	 <body>
+    <!-- Page Features -->
       <div class="row text-center">
 
         <div class="col-lg-3 col-md-6 mb-4">
@@ -162,7 +180,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
+	
   </body>
 
 </html>

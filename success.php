@@ -1,22 +1,25 @@
+<?php
+/* Displays all successful messages */
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quickwash - Express Laundry</title>
-
-    <!-- Bootstrap core CSS -->
+	<title>Success</title>
+	<!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/heroic-features.css" rel="stylesheet">
+</head>
 
-  </head>
+
 
   <body>
 
@@ -30,18 +33,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#">About
+            <li class="nav-item">
+              <a class="nav-link" href="about.php">About</a>
+            </li>
+			<li class="nav-item active">
+              <a class="nav-link" href="#">Services
                 <span class="sr-only">(current)</span>
               </a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link" href="services.html">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
           </ul>
         </div>
@@ -53,11 +56,19 @@
 
       <!-- Jumbotron Header -->
       <header class="jumbotron my-4">
-        <h1>About</h1>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		
+		<div class="form">
+    <h1><?= 'Success'; ?></h1>
+    <p>
+    <?php 
+    if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ):
+        echo $_SESSION['message'];    
+    else:
+        header( "location: index.php" );
+    endif;
+    ?>
+    </p>
+    <a href="index.php"><button class="button button-block"/>Home</button></a>
+</div>
       </header>
 
     </div>
